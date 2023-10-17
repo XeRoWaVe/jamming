@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import songId from './songId'
 import SearchResults from './SearchResults'
 
@@ -17,25 +17,28 @@ export default function SearchBar() {
         setSearchResults(searchInput)
     }
     
+    
+
     return (
-        <div>
+            <form onSubmit={handleSubmit}>
             <input
                 className="searchBar"
                 type="search"
                 placeholder="Search here"
                 onChange={handleSearch}
-                value={searchInput}
+                // value={searchInput}
             />
-            <form>
-                <label>Search</label>
+                {/* <label>Search</label>
                 <input 
                     type="submit"
                     value="Submit"
                     onSubmit={handleSubmit}
-                />
-            </form>
+                /> */}
+            <button type="submit" >
+                Submit
+            </button>
             <SearchResults searchResults={searchResults}/>
-        </div>
+            </form>
     )
         // Add a search button here
 }
