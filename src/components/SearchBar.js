@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import songId from './songId'
 import SearchResults from './SearchResults'
+import styles from './SearchBar.module.css'
 
 
 export default function SearchBar() {
@@ -16,7 +17,6 @@ export default function SearchBar() {
         e.preventDefault();
         setSearchResults(searchInput)
     }
-    
     
 
     return (
@@ -37,8 +37,9 @@ export default function SearchBar() {
             <button type="submit" >
                 Submit
             </button>
-            <SearchResults searchResults={searchResults}/>
+                <div className="primarycontainer">
+                    <SearchResults searchResults={searchResults}/>
+                </div>
             </form>
     )
-        // Add a search button here
 }
