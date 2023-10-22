@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {data} from '../data'
 import styles from './SearchResults.module.css'
+import {data2} from '../data2'
 
 
 
@@ -8,6 +9,7 @@ const SearchResults = ({ searchResults }) => {
 
     const [playList, setPlayList] = useState([])
     const [title, setTitle] = useState('')
+
 
     const handleAddToPlaylist = (song) => {
         if (!playList.includes(song))
@@ -25,8 +27,9 @@ const SearchResults = ({ searchResults }) => {
         setTitle(e.target.value)
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSave = (e) => {
+        
+        setPlayList([]);
     }
 
     return (
@@ -37,14 +40,14 @@ const SearchResults = ({ searchResults }) => {
                     <th>Artist</th>
                     <th>Album</th>
                 </tr>
-                {data.filter((item) => {
+                {data2.filter((item) => {
                     return searchResults.toLowerCase() === '' ? item : item.song_name.toLowerCase().includes(searchResults);
                 }).map((item) => {
                     return (
                     <tr key={item.id}>
-                        <td>{item.song_name}</td>
-                        <td>{item.artist_name}</td>
-                            <td>{item.album_name}</td>
+                        <td>{item.Song}</td>
+                        <td>{item.Artist}</td>
+                            <td>{item.Album}</td>
                             <td><button onClick={()=>handleAddToPlaylist(item)}>Add</button></td>
                     </tr>
                 )
@@ -53,7 +56,7 @@ const SearchResults = ({ searchResults }) => {
             {
                 !!playList.length && (
                     <div>
-                        <form className="playlist" onSubmit={handleSubmit}>
+                        <form className="playlist" onSubmit={handleSave}>
                         <input
                             type="text"
                             id="playlist"
@@ -68,9 +71,9 @@ const SearchResults = ({ searchResults }) => {
                             {playList.map((item) => {
                                 return (
                                     <tr key={item.id}>
-                                        <td>{item.song_name}</td>
-                                        <td>{item.artist_name}</td>
-                                        <td>{item.album_name}</td>
+                                        <td>{item.Song}</td>
+                                        <td>{item.Artist}</td>
+                                        <td>{item.Album}</td>
                                         <td> <button className="removebutton" onClick={() => handleRemoveFromPlayList(item)}>
                                         Remove
                                         </button>

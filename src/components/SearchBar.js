@@ -20,6 +20,8 @@ export default function SearchBar() {
     
 
     return (
+
+        
             <form onSubmit={handleSubmit}>
             <input
                 className="searchBar"
